@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+
+
+</head>
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <!-- <div id="app">
+        <p>{{sayHi()}}</p>
+        <button v-on:click="reverseMessage">メッセージ反転
+        </button>
+        <a v-text="message"></a>
+    </div>
+     -->
+     <div id="app">
+         <!-- <p v-once>{{ message }}</p>
+         <p>{{ sayHi() }}</p>
+         <div v-html='html'>{{ html }}</div>
+         <a :[attribute]="url">Google</a>
+         <a v-bind="TwitterObject">Twitter</a>
+         -->
+         <p>現在{{ number }}回クリックされています</p>
+         <button v-on:click="countUp">カウントアップ</button>
+         <p v-on:mousemove="changeMousePosition(3, $event)">マウスを載せてください <span v-on:mousemove.stop>
+             反応させないでください
+         </span></p>
+         <p>X:{{x}}, Y:{{y}}</p>
+         <a v-on:click.prevent.stop="noEvent" href="https://google.com">Google</a>
+         <input type="text" v-on:keyup.space="myAlert">
+     </div>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                number: 0,
+                x: 0,
+                y: 0,
+                },
+            methods: {
+                reverseMessage: function() {
+                    //vueインスタンスのメッセージにアクセス
+                    this.message = this.message.split('').reverse().join('')
+                },
+                sayHi: function() {
+                     this.message = "Hello Vue JS";
+                     return 'Hi!';
+                },
+                countUp: function() {
+                    this.number += 1
+                },
+                changeMousePosition: function(divideNumber, event) {
+                    this.x = event.clientX / divideNumber;
+                    this.y = event.clientY /divideNumber;
+                },
+                noEvent: function(event) {
+                    event.stopPropagation();
+                    event.preventDefault();
+                },
+                myAlert() {
+                    alert('アラート')
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
