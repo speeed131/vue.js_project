@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <!-- <div id="app">
+        <p>{{sayHi()}}</p>
+        <button v-on:click="reverseMessage">メッセージ反転
+        </button>
+        <a v-text="message"></a>
+    </div>
+     -->
+     <div id="app">
+        <input type="text" v-model="message">
+        <!-- <h1>{{ message }}</h1>
+        <p>{{ counter > 3 ? '3より上' : '３以下' }}</p>
+        <p>{{ lessThanThree }}</p>
+        <p>{{ lessThanThree2 }}</p> -->
+        <!-- <p>{{ lessThanThree3 }}</p> -->
+        <p> {{ counter }}</p>
+        <button @click="counter += 1">+1</button>
+
+        <!-- 下記のbuttonのclickはvue -->
+        <button @click="countUp"> +1 </button>
+        <!-- 下記のbuttonはJS -->
+        <button @click="countUp()"> +1 </button>
+        <p>{{ doubleCounterComputed }}</p>
+        <p>{{ doubleCounterMethod() }}</p>
+
+     </div>
+
+     <script>
+         new Vue({
+            el: '#app',
+            data: {
+                 message: 'こんにちは',
+                 counter: 0,
+                 lessThanThree: function () {
+                     return this.counter > 3 ? '3より上' : '３以下'
+                 },
+            },
+            methods: {
+                doubleCounterMethod: function() {
+                    return this.counter *2;
+                },
+                countUp: function() {
+                    this.number += 1
+                },
+            },
+            computed: {
+                lessThanThree2: function () {
+                return this.counter > 3 ? '3より上' : '３以下';
+                },
+                doubleCounterComputed: function () {
+                    return this.counter * 2
+                }
+            },
+            watch: {
+                // counter: function() {
+                //     const vm = this;
+                //     setTimeout(function() {
+                //         vm.counter = 0
+                //     }, 3000)
+                // }
+            }
+         })
+     </script>
+</body>
+</html>

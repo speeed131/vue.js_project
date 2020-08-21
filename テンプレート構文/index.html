@@ -25,7 +25,7 @@
          <a v-bind="TwitterObject">Twitter</a>
          -->
          <p>現在{{ number }}回クリックされています</p>
-         <button v-on:click="countUp">カウントアップ</button>
+         <button @[event]="countUp">カウントアップ</button>
          <p v-on:mousemove="changeMousePosition(3, $event)">マウスを載せてください <span v-on:mousemove.stop>
              反応させないでください
          </span></p>
@@ -40,6 +40,7 @@
                 number: 0,
                 x: 0,
                 y: 0,
+                event: 'click'
                 },
             methods: {
                 reverseMessage: function() {
