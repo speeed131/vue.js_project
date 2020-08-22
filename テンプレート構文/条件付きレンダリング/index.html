@@ -26,15 +26,47 @@
         <button @click="ok = !ok">ボタン</button>
 
         <p v-show="ok">Show</p>
+
+        <ul>
+
+            <li v-for="fruit in fruits">{{ fruit }}</li>
+            <li v-for="(fruit, index) in fruits">({{ index }}){{ fruit }}</li>
+
+            <li v-for="(value, key, index) in object">{{ index }}{{ key }}{{ value }}</li>
+
+            <template v-for="fruit of fruits">
+                <li v-for="n in 10">
+                    {{ fruit }}
+                </li>
+                <hr>
+            </template>
+        </ul>
+
+        <div v-for="fruit in fruits" :key="fruit">
+            <p>{{ fruit }}</p>
+            <input type="text">
+        </div>
+        <button v-on:click="remove">先頭を削除</button>
     </div>
+    
 
      <script>
          new Vue({
             el: '#app',
             data: {
                 //okプロパティ
-                ok: true
-                
+                ok: true,
+                fruits:  ['りんご', 'バナナ', 'ぶどう'],
+                object: {
+                    firstName: '太郎',
+                    lastName: '田中',
+                    age: 21
+                }
+            },
+            methods: {
+                remove: function() {
+                    this.fruits.shift()
+                }
             }
          })
      </script>
