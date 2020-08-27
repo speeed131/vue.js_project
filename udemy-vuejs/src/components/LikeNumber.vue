@@ -10,6 +10,7 @@
 
 <script>
 export default { 
+    //これが受け口
     props: ['totalNumber'],
 
     computed: {
@@ -19,7 +20,9 @@ export default {
     },
     methods: {
         increment() {
-            this.totalNumber += 1;
+            // this.totalNumber += 1;
+            //これが送り口
+            this.$emit('my-click', this.totalNumber + 1);
         }
     }
 };
