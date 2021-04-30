@@ -30,23 +30,19 @@
                  }
              },
              computed: {
-                randomC() {
-                     return Math.random();
-                    }
-                /* 下記と同じ
-                randomC: function() {
-                    return Math.random();
-                    }
-                */
+  
              },
              methods: {
-                 onclick() {
-                     this.current = new Date().toLocaleString();
-                 },
-                 randomM() {
-                     return Math.random();
-                 }
+
              },
+             /*
+                「ウォッチャ」はデータの変化をトリガーとしたフックである
+                非同期などの重い処理を「ウォッチャ」に任せる
+                重い処理を任せるので頻度を調整する必要がある
+             */
+             watch: {
+
+             }
          })
 
      </script>

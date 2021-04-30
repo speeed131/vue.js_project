@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <div id="app">
+        <img
+            :src="path"
+            alt="ロゴ画像"
+            @mouseenter="onMouseEnter"
+            @mouseleave="onMouseLeave"
+        >
+
+    </div>
+
+     <script>
+         new Vue({
+             el: '#app',
+             data() {
+                 return {
+                    path: 'https://car.watch.impress.co.jp/img/car/docs/1200/293/010_l.jpg'
+                 }
+             },
+             computed: {
+  
+             },
+             /*
+             「ウォッチャ」はデータの変化をトリガーとしたフックである
+             非同期などの重い処理を「ウォッチャ」に任せる
+             重い処理を任せるので頻度を調整する必要がある
+             */
+            watch: {
+                
+            },
+            methods: {
+               onMouseEnter() {
+                   this.path = 'https://dg24ae6szr1rz.cloudfront.net/photo/b4c2dc6998f5e8e05ce28510f3cf5f16.jpg/w1100/tr/file'
+               },
+               onMouseLeave() {
+                   this.path = 'https://motor-fan.jp/images/articles/10015782/big_main10015782_20200806113200000000.jpg'
+               }
+            },
+         })
+
+     </script>
+</body>
+</html>
