@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <div id="app">
+        <form action="">
+            <input type="button" value="クリック"
+            @click="onclick"
+            >
+        </form>
+        <div>算出プロパティ: {{ randomC }}</div>
+        <div>メソッド: {{ randomM() }}</div>
+        <div>現在日時: {{ current }}</div>
+        <div></div>
+
+    </div>
+
+     <script>
+         new Vue({
+             el: '#app',
+             data() {
+                 return {
+                     current: new Date().toLocaleString()
+                 }
+             },
+             computed: {
+                randomC() {
+                     return Math.random();
+                    }
+                /* 下記と同じ
+                randomC: function() {
+                    return Math.random();
+                    }
+                */
+             },
+             methods: {
+                 onclick() {
+                     this.current = new Date().toLocaleString();
+                 },
+                 randomM() {
+                     return Math.random();
+                 }
+             },
+         })
+
+     </script>
+</body>
+</html>
