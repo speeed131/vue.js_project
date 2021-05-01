@@ -9,18 +9,33 @@
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 
     <div id="app">
-        <select name="" id="os"
-            v-model="os"
-            multiple
-            size="3"
-        
-        >
-            <option value="">OSを選択してください</option>
-            <option >Windows</option>
-            <option >linux</option>
-            <option >centos</option>
-        </select>
-        <p>{{ os }}</p>
+        <fieldset>
+            <legend>支払い方法</legend>
+            クレジットカード:
+            <input type="radio" name="pay" id=""
+                value="credit"
+                v-model="pay"
+            >
+            銀行振込:
+            <input type="radio" name="pay" id="ddd"
+                value="bank"
+                v-model="pay"
+
+            >
+            <hr>
+            <!-- keyを入れないと、inputを再利用してしまう！ -->
+            <div v-if="pay === 'credit'"> 
+                カード番号:
+                <input type="text" name="" id=""
+                key="bank">
+            </div>
+            <div v-else-if="pay === 'bank'"> 
+                口座番号
+
+                <input type="text" name="" id="aaa"
+                key="credit">
+            </div>
+        </fieldset>
     </div>
 
      <script>
@@ -28,7 +43,7 @@
              el: '#app',
              data() {
                  return {
-                    os: []
+                    pay: null
                  }
              },
              computed: {

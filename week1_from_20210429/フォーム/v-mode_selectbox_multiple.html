@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <div id="app">
+        <form action="">
+            <select name="" id="os"
+                v-model="os"
+                multiple
+                size="3"
+            
+            >
+                <option value="">OSを選択してください</option>
+                <option >Windows</option>
+                <option >linux</option>
+                <option >centos</option>
+            </select>
+            <p>{{ os }}</p>
+            <p>以下のようにオブジェクトも渡せるよ</p>
+            <label for="million">百万:</label>
+            <input type="radio" name="" id="million" 
+            v-model="unit" 
+            :value = "{name: '百万', size: 1000000}"
+            >
+
+            <label for="million">１０億:</label>
+            <input type="radio" name="" id="billion" 
+            v-model="unit" 
+            :value = "{name: '１０億', size: 1000000000}"
+            >
+
+            <label for="million">一兆:</label>
+            <input type="radio" name="" id="tillion" 
+            v-model="unit" 
+            :value = "{name: '一兆', size: 1000000000000}"
+            >
+
+        </form>
+        <p>{{ unit }}</p>
+    </div>
+
+     <script>
+         new Vue({
+             el: '#app',
+             data() {
+                 return {
+                    os: [],
+                    unit: {},
+                 }
+             },
+             computed: {
+  
+             },
+             /*
+             「ウォッチャ」はデータの変化をトリガーとしたフックである
+             非同期などの重い処理を「ウォッチャ」に任せる
+             重い処理を任せるので頻度を調整する必要がある
+             */
+            watch: {
+
+            },
+            methods: {
+
+            },
+         })
+
+     </script>
+</body>
+</html>

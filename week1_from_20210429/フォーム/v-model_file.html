@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <div id="app">
+        <form action="">
+            <input ref="upfile" type="file" @change="onChange">
+        </form>
+        <h1>
+            {{ message }}
+        </h1>
+    </div>
+
+     <script>
+         new Vue({
+             el: '#app',
+             data() {
+                 return {
+                    message: null,
+                 }
+             },
+             computed: {
+  
+             },
+             /*
+             「ウォッチャ」はデータの変化をトリガーとしたフックである
+             非同期などの重い処理を「ウォッチャ」に任せる
+             重い処理を任せるので頻度を調整する必要がある
+             */
+            watch: {
+
+            },
+            methods: {
+                onChange() {
+                    let that = this;
+                    //filesはアップロードされたFileListオブジェクトとして返すため、１つの前提で[0]を指定。
+                    let fl = this.$refs.upfile.files[0];
+
+
+                    //アップロードファイルの準備 データの詰め替え。Fileオブジェクトのままではアップロードできないため。
+                    let data = new FormData();
+                    data.append('upfile', fl, fl.name)
+
+                    //サーバーにデータを送信
+                    fetch('./upload.php', {
+                        method: 'POST',
+                        body: data,
+                    })
+                    //成功時には結果を表示
+                    .then(response => {
+                        return response.text();
+                    })
+                    .then(text => {
+                        that.message = text;
+                    })
+                    //失敗時にはエラーメッセージを表示
+                    .catch(error => {
+                        window.alert('Error: ' + error.message);
+                    })
+                }
+            },
+         })
+
+     </script>
+</body>
+</html>

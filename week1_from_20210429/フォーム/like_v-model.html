@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <div id="app">
+         <form action="">
+             <label for="mail">メールアドレス</label>
+             <textarea name="" id="mail"
+                :value="mails.join(';')"
+                @input="mails=$event.target.value.split(';')"
+             ></textarea>
+         </form>
+         <ul>
+             <li v-for="mail in mails">
+                 {{ mail }}
+             </li>
+         </ul>
+         {{mails}}
+    </div>
+
+     <script>
+         new Vue({
+             el: '#app',
+             data() {
+                 return {
+                    mails: []
+                 }
+             },
+             computed: {
+  
+             },
+             /*
+             「ウォッチャ」はデータの変化をトリガーとしたフックである
+             非同期などの重い処理を「ウォッチャ」に任せる
+             重い処理を任せるので頻度を調整する必要がある
+             */
+            watch: {
+
+            },
+            methods: {
+
+            },
+         })
+
+     </script>
+</body>
+</html>
