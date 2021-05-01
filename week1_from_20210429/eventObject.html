@@ -9,7 +9,11 @@
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 
     <div id="app">
-        
+        <button
+            @click="onclick('ようこそ', $event)"
+        ></button>
+        <p> {{ message }} </p>
+        <p> {{ e }} </p>
     </div>
 
      <script>
@@ -17,7 +21,9 @@
              el: '#app',
              data() {
                  return {
-                     current: new Date().toLocaleString()
+                    message: null,
+                    e: null,
+
                  }
              },
              computed: {
@@ -32,7 +38,11 @@
 
             },
             methods: {
-
+                onclick(message, e) {
+                    this.message = message;
+                    this.e = e;
+                    console.log(e);
+                }
             },
          })
 
