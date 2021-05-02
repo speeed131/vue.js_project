@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <div id="app">
+        <table>
+            <th>isbn</th>
+            <th>書名</th>
+            <th>価格</th>
+            <tr
+                v-for="(book, index) in books"
+                
+
+            >
+                <td>{{ index+1 }}</td>
+                <td>{{ book.isbn }}</td>
+                <td>{{ book.title }}</td>
+                <td>{{ book.price }}</td>
+            </tr>
+        </table>
+        <table>
+            <h3>３０００円以上の本だけ</h3>
+            <th>isbn</th>
+            <th>書名</th>
+            <th>価格</th>
+            <tr
+                v-for="(book, index) in expensiveBooks"
+                :key="book"
+
+            >
+                <td>{{ index+1 }}</td>
+                <td>{{ book.isbn }}</td>
+                <td>{{ book.title }}</td>
+                <td>{{ book.price }}</td>
+            </tr>
+        </table>
+
+        <table>
+            <h3>オブジェクトのプロパティを展開</h3>
+            <th>isbn</th>
+            <th>書名</th>
+            <th>価格</th>
+            <tr
+                v-for="(value, key, index) in authorInformation"
+                :key="key"
+                v-if="authorInformation.length"
+
+            >
+                <td>{{ index + 1 }}</td>
+                <td>{{ key }}</td>
+                <td>{{ value }}</td>
+            </tr>
+        </table>
+    </div>
+
+     <script>
+         new Vue({
+             el: '#app',
+             data() {
+                 return {
+                    books: [
+                        {
+                            isbn: 3434,
+                            title: 'javascript',
+                            price: 3500,
+                        },
+                        {
+                            isbn: 3434,
+                            title: 'javascript',
+                            price: 2000,
+                        },
+                        {
+                            isbn: 3434,
+                            title: 'javascript',
+                            price: 100,
+                        },
+                        {
+                            isbn: 3434,
+                            title: 'javascript',
+                            price: 3000,
+                        },
+                    ],
+                    authorInformation: {
+                        name: 'Daiki',
+                        date: 20200405,
+                    }
+                 }
+             },
+             computed: {
+                expensiveBooks() {
+                    return this.books.filter(books => {
+                        return books.price >= 3000;
+                    })
+                }
+             },
+             /*
+             「ウォッチャ」はデータの変化をトリガーとしたフックである
+             非同期などの重い処理を「ウォッチャ」に任せる
+             重い処理を任せるので頻度を調整する必要がある
+             */
+            watch: {
+
+            },
+            methods: {
+
+            },
+         })
+
+     </script>
+</body>
+</html>

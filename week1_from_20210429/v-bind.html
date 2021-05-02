@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <div id="app">
+        <form action="">
+            <label for="memo">メモ</label>
+            <input type="text" name="" id=""
+                v-bind="attrs"
+            >
+
+        </form>
+        <select name="" id=""
+            v-model="sizeAttrs.which"
+        >
+            <option value="height">高さ</option>
+            <option value="width">幅</option>
+        </select>
+        <input type="text" name="" id="" size="5" 
+            v-model="sizeAttrs.size"
+        >
+        <img src="https://response.jp/imgs/thumb_h2/1540650.jpg" alt=""
+            :[size-attrs.which]="sizeAttrs.size"
+        >
+    </div>
+
+     <script>
+         new Vue({
+             el: '#app',
+             data() {
+                 return {
+                    attrs: {
+                        size: 40,
+                        maxlength: 14,
+                        required: true,
+                    },
+                    sizeAttrs: {
+                        which: 'width',
+                        size: 100
+                    }
+                 }
+             },
+             computed: {
+  
+             },
+             /*
+             「ウォッチャ」はデータの変化をトリガーとしたフックである
+             非同期などの重い処理を「ウォッチャ」に任せる
+             重い処理を任せるので頻度を調整する必要がある
+             */
+            watch: {
+
+            },
+            methods: {
+
+            },
+         })
+
+     </script>
+</body>
+</html>
