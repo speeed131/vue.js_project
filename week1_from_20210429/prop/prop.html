@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <div id="app">
+        <my-counter init="15"></my-counter>
+
+    </div>
+
+     <script>
+         new Vue({
+             el: '#app',
+             data() {
+                 return {
+
+                 }
+             },
+             computed: {
+  
+             },
+             /*
+             「ウォッチャ」はデータの変化をトリガーとしたフックである
+             非同期などの重い処理を「ウォッチャ」に任せる
+             重い処理を任せるので頻度を調整する必要がある
+             */
+            watch: {
+
+            },
+            methods: {
+
+            },
+            components: {
+                'my-counter': {
+                    props: {
+                        init: {
+                            type: [String, Number],
+                            default: 9,
+                            validator(value) {
+                                return value <= 10;
+                            }
+                        }
+                    },
+                    template: `
+                        <div>現在地は{{ current }}です
+                        <input type="button" @click="onclick" value="増やす">
+                        </div>
+                    `,
+                    data() {
+                        return {
+                            current: this.init
+                        }
+                    },
+                    methods: {
+                        onclick() {
+                            this.current++
+                        }
+                    },
+                }
+            }
+         })
+
+
+     </script>
+</body>
+</html>
