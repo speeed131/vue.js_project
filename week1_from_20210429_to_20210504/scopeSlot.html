@@ -9,26 +9,32 @@
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 
     <div id="app">
-        
+         <my-book>
+             <template v-slot:default="{ book }">
+                 <div>
+                     {{book.title}} {{book.price}}
+                 </div>
+             </template>
+         </my-book>
     </div>
 
      <script>
-         Vue.component('my-counter', {
-             props: ['step'],
-             template: `<button type="button" @click="onclick"> 
-                {{ step }}</button>
-                `,
-            methods: {
-                onclick() {
-                    
-                }
-            },
+         Vue.component('my-book', {
+             template: '<div> <slot :book="book">{{ book.title }} </slot> </div>',
+             data() {
+                 return {
+                    book: {
+                         title: 'dwafawfwae',
+                         price : 2334,
+                     }
+                 }
+             },
          })
-
          new Vue({
              el: '#app',
              data() {
                  return {
+                    
 
                  }
              },

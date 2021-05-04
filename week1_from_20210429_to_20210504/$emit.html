@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <div id="app">
+        <p>{{ current }}</p>
+        <my-counter step=3 @plus="onPlus"></my-counter>
+    </div>
+
+     <script>
+         Vue.component('my-counter', {
+             props: ['step'],
+             template: `<button type="button" @click="onclick"> 
+                {{ step }}</button>
+                `,
+            methods: {
+                onclick() {
+                    //イベント名はケバブケースで統一する
+                    this.$emit('plus', Number(this.step))
+                }
+            },
+         })
+
+         new Vue({
+             el: '#app',
+             data() {
+                 return {
+                    current: 0
+                 }
+             },
+             computed: {
+  
+             },
+             /*
+             「ウォッチャ」はデータの変化をトリガーとしたフックである
+             非同期などの重い処理を「ウォッチャ」に任せる
+             重い処理を任せるので頻度を調整する必要がある
+             */
+            watch: {
+
+            },
+            methods: {
+                onPlus(e) {
+                    console.log(e);
+                    this.current += e;
+                }
+            },
+         })
+
+     </script>
+</body>
+</html>
