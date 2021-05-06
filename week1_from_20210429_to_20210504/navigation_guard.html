@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <div id="app">
+        <h1>記事コード: {{ aid }}</h1>
+    </div>
+
+     <script>
+         new Vue({
+             el: '#app',
+             data() {
+                 return {
+                    
+                 }
+             },
+             computed: {
+  
+             },
+             /*
+             「ウォッチャ」はデータの変化をトリガーとしたフックである
+             非同期などの重い処理を「ウォッチャ」に任せる
+             重い処理を任せるので頻度を調整する必要がある
+             */
+            watch: {
+
+            },
+            methods: {
+
+            },
+         })
+
+         //timeguard
+         let timeGuard = (to, from, next) => {
+            let data = {
+                13: new Date(2019, 10, 30),
+                108: new Date(2018, 10, 30)
+            }
+
+        let limit = data[to.params.aid] ? data[to.params.aid] : new Date(2999, 12, 31)
+
+        let current = new Date() 
+
+        if (limit && limit.getTime() > current.getTime()) {
+            next()
+        } else {
+            window.alert('記事の公開期限が過ぎています')
+            next(false);
+        }
+
+         }
+
+         export default {
+             name: 'Article',
+             beforeRouteEnter: timeGuard,
+             beforeRouteUpdate: timeGuard,
+             props: {
+                 aid: String
+             }
+         }
+
+
+     </script>
+</body>
+</html>

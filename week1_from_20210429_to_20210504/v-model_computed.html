@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <div id="app">
+        <my-input v-model="message"></my-input>
+        <p>{{ message }}</p>
+    </div>
+
+     <script>
+         Vue.component('my-input', {
+            props: [ 'value' ],
+            template: `<label>
+                名前：
+                <input
+                type="text" 
+                v-model="internalValue" />
+            </label>`
+            ,
+            computed: {
+                internalValue: {
+                    get() {
+                        return this.value;
+                    },
+                    set(newValue) {
+                        if(this.value !== newValue) {
+                            this.$emit('input', newValue);
+                        }
+                    }
+
+                }
+            },
+            methods: {
+
+            },
+        });
+         new Vue({
+             el: '#app',
+             data() {
+                 return {
+                    message: null
+                 }
+             },
+             computed: {
+                
+             },
+             /*
+             「ウォッチャ」はデータの変化をトリガーとしたフックである
+             非同期などの重い処理を「ウォッチャ」に任せる
+             重い処理を任せるので頻度を調整する必要がある
+             */
+            watch: {
+
+            },
+            methods: {
+
+            },
+         })
+
+     </script>
+</body>
+</html>
